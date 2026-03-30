@@ -47,7 +47,7 @@ export default function JobsSection() {
               <div className="space-y-2 text-sm text-muted-foreground mb-4">
                 <div className="flex items-center gap-2"><MapPin size={14} /> {job.location}</div>
                 <div className="flex items-center gap-2"><Clock size={14} /> {job.type}</div>
-                <div className="flex items-center gap-2"><DollarSign size={14} /> {job.salary}</div>
+                <div className="flex items-center gap-2"><IndianRupee size={14} /> {job.salary}</div>
               </div>
               <a href="#apply" className="block text-center bg-gradient-cta text-primary-foreground font-heading font-semibold py-2.5 rounded-lg hover:opacity-90 transition-opacity text-sm">
                 Apply Now
