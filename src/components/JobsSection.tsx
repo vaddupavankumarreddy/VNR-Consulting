@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, DollarSign } from 'lucide-react';
 
 const jobs = [
-  { title: 'Senior Software Engineer', location: 'Remote', type: 'Full-Time', salary: '$120k - $160k', category: 'Technology' },
-  { title: 'Product Manager', location: 'New York, NY', type: 'Full-Time', salary: '$110k - $140k', category: 'Management' },
-  { title: 'Data Analyst', location: 'Chicago, IL', type: 'Contract', salary: '$80k - $100k', category: 'Analytics' },
-  { title: 'UX Designer', location: 'San Francisco, CA', type: 'Full-Time', salary: '$100k - $130k', category: 'Design' },
-  { title: 'DevOps Engineer', location: 'Remote', type: 'Full-Time', salary: '$115k - $150k', category: 'Technology' },
-  { title: 'HR Business Partner', location: 'Austin, TX', type: 'Full-Time', salary: '$90k - $120k', category: 'Human Resources' },
+  { title: 'Senior Software Engineer', location: 'Remote', type: 'FTE', salary: '₹18L - ₹25L', category: 'Technology' },
+  { title: 'Product Manager', location: 'Hyderabad', type: 'FTE', salary: '₹15L - ₹22L', category: 'Management' },
+  { title: 'Data Analyst', location: 'Bangalore', type: 'C2C', salary: '₹10L - ₹14L', category: 'Analytics' },
+  { title: 'UX Designer', location: 'Mumbai', type: 'W2', salary: '₹12L - ₹18L', category: 'Design' },
+  { title: 'DevOps Engineer', location: 'Remote', type: 'C2C', salary: '₹16L - ₹22L', category: 'Technology' },
+  { title: 'HR Business Partner', location: 'Chennai', type: 'FTE', salary: '₹8L - ₹14L', category: 'Human Resources' },
 ];
 
 export default function JobsSection() {
