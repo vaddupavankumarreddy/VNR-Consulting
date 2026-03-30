@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Clock, DollarSign } from 'lucide-react';
+import { MapPin, Clock, IndianRupee } from 'lucide-react';
 
 const jobs = [
   { title: 'Senior Software Engineer', location: 'Remote', type: 'FTE', salary: '₹18L - ₹25L', category: 'Technology' },
