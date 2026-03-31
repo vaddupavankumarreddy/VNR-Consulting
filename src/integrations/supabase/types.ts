@@ -14,16 +14,139 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      candidate_applications: {
+        Row: {
+          created_at: string
+          email: string
+          experience: string
+          full_name: string
+          id: string
+          message: string | null
+          phone: string
+          position: string
+          resume_link: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          experience: string
+          full_name: string
+          id?: string
+          message?: string | null
+          phone: string
+          position: string
+          resume_link?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          experience?: string
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          position?: string
+          resume_link?: string | null
+        }
+        Relationships: []
+      }
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
+      jobs: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          is_active: boolean
+          location: string
+          salary: string
+          title: string
+          type: Database["public"]["Enums"]["job_type"]
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location: string
+          salary: string
+          title: string
+          type?: Database["public"]["Enums"]["job_type"]
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location?: string
+          salary?: string
+          title?: string
+          type?: Database["public"]["Enums"]["job_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      job_type: "FTE" | "W2" | "C2C"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +273,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      job_type: ["FTE", "W2", "C2C"],
+    },
   },
 } as const
