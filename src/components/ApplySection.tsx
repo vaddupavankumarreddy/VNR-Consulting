@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function ApplySection() {
   const [form, setForm] = useState({
@@ -12,14 +13,27 @@ export default function ApplySection() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from('candidate_applications').insert({
+        full_name: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        position: form.position,
+        experience: form.experience,
+        resume_link: form.resume || null,
+        message: form.message || null,
+      });
+      if (error) throw error;
       toast.success('Application submitted successfully! We will get back to you soon.');
       setForm({ fullName: '', email: '', phone: '', position: '', experience: '', resume: '', message: '' });
+    } catch {
+      toast.error('Failed to submit application. Please try again.');
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   const inputClass = "w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition font-body text-sm";
