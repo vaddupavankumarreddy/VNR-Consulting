@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
@@ -10,14 +11,24 @@ export default function ContactSection() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const { error } = await supabase.from('contact_submissions').insert({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        message: form.message || null,
+      });
+      if (error) throw error;
       toast.success('Your details have been submitted! We will reach out to you soon.');
       setForm({ name: '', email: '', phone: '', message: '' });
+    } catch {
+      toast.error('Failed to submit. Please try again.');
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   const inputClass = "w-full bg-card border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition font-body text-sm";
